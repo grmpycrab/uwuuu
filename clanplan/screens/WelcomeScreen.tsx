@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Modal } from 'react-native';
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import RegisterScreen from './RegisterScreen';
 
+
+
 export default function WelcomeScreen() {
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const openRegisterModal = () => {
-        setModalVisible(true);
-    };
-
-    const closeRegisterModal = () => {
-        setModalVisible(false);
-    };
-
     return (
         <View style={styles.container}>
             <View style={styles.logoContainer}>
@@ -22,10 +14,9 @@ export default function WelcomeScreen() {
             <Text style={styles.appName}>ClanPlan</Text>
             <Text style={styles.welcome}>WELCOME!</Text>
 
-            <TouchableOpacity style={styles.createAccountButton} onPress={openRegisterModal}>
+            <TouchableOpacity style={styles.createAccountButton}>
                 <Text style={styles.createAccountText}>Create Account</Text>
             </TouchableOpacity>
-
             <TouchableOpacity style={styles.loginButton}>
                 <Text style={styles.loginText}>Login</Text>
             </TouchableOpacity>
@@ -39,23 +30,6 @@ export default function WelcomeScreen() {
             </View>
 
             <Text style={styles.footer}>Powered by: grmpycrab</Text>
-
-            {/* Modal for RegisterScreen */}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={closeRegisterModal}
-            >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContent}>
-                        <TouchableOpacity style={styles.closeButton} onPress={closeRegisterModal}>
-                            <Text style={styles.closeText}>X</Text>
-                        </TouchableOpacity>
-                        <RegisterScreen />
-                    </View>
-                </View>
-            </Modal>
         </View>
     );
 }
@@ -132,27 +106,5 @@ const styles = StyleSheet.create({
         color: '#666',
         position: 'absolute',
         bottom: 20,
-    },
-    // Modal styles
-    modalOverlay: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-        width: '90%',
-        padding: 20,
-        backgroundColor: 'white',
-        borderRadius: 10,
-    },
-    closeButton: {
-        alignSelf: 'flex-end',
-        padding: 5,
-    },
-    closeText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#333',
     },
 });
